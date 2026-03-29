@@ -1,0 +1,28 @@
+# 市场 API 测试脚本
+
+@baseUrl = https://physics-api-cn.turtlesim.com
+@token = your_api_token_here
+
+### 获取市场信息
+GET {{baseUrl}}/Markets/
+
+### 购买物品
+POST {{baseUrl}}/Markets/PurchaseObject
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Target": "item_name",
+  "Index": 0
+}
+
+### 验证收据
+POST {{baseUrl}}/Markets/VerifyReceipt
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Receipt": "base64_encoded_receipt_data",
+  "Platform": "iOS",
+  "CountryCode": "US"
+}

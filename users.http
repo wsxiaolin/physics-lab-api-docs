@@ -1,0 +1,340 @@
+# 用户 API 测试脚本
+
+@baseUrl = https://physics-api-cn.turtlesim.com
+@token = your_api_token_here
+
+### 获取服务信息
+GET {{baseUrl}}/Users/
+
+### 用户认证
+POST {{baseUrl}}/Users/Authenticate
+Content-Type: application/json
+
+{
+  "Login": "test@example.com",
+  "Password": "password123",
+  "Device": {
+    "Identifier": "test_device_123",
+    "Platform": "Web",
+    "System": "Chrome",
+    "Language": "Chinese"
+  },
+  "Version": 200
+}
+
+### 用户登出
+POST {{baseUrl}}/Users/Logout
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "PushToken": "push_token_123"
+}
+
+### 订阅邮件
+GET {{baseUrl}}/Users/Subscribe?Email=test@example.com
+
+### 绑定账户
+POST {{baseUrl}}/Users/BindAccount
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Login": "test@example.com",
+  "Password": "password123",
+  "Language": "Chinese"
+}
+
+### 确认绑定
+POST {{baseUrl}}/Users/ConfirmBinding
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Login": "test@example.com",
+  "Token": "123456"
+}
+
+### 找回密码
+POST {{baseUrl}}/Users/FindPassword
+Content-Type: application/json
+
+{
+  "Login": "test@example.com",
+  "Language": "Chinese"
+}
+
+### 重置密码
+POST {{baseUrl}}/Users/ResetPassword
+Content-Type: application/json
+
+{
+  "Login": "test@example.com",
+  "Token": "reset_token_123",
+  "Password": "new_password123"
+}
+
+### 设置密码
+POST {{baseUrl}}/Users/SetPassword
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "NewPassword": "new_password123"
+}
+
+### 同步活动
+POST {{baseUrl}}/Users/SyncActivities
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Statistic": {}
+}
+
+### 领取奖励
+POST {{baseUrl}}/Users/ReceiveBonus
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ActivityID": "activity_123",
+  "Index": 0,
+  "Statistic": {}
+}
+
+### 兑换促销码
+POST {{baseUrl}}/Users/RedeemPromo
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Code": "PROMO123"
+}
+
+### 提交反馈
+POST {{baseUrl}}/Users/SubmitFeedback
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ActivityID": "activity_123",
+  "Content": "这是一个测试反馈"
+}
+
+### 重命名用户
+POST {{baseUrl}}/Users/Rename
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Target": "新昵称"
+}
+
+### 修改信息
+POST {{baseUrl}}/Users/ModifyInformation
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Field": "Signature",
+  "Target": "新签名"
+}
+
+### 用户升级
+POST {{baseUrl}}/Users/Upgrade
+Content-Type: application/json
+x-API-Token: {{token}}
+
+### 请求头像
+POST {{baseUrl}}/Users/RequestAvatar
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Request": {
+    "FileSize": 1024000
+  }
+}
+
+### 确认头像
+POST {{baseUrl}}/Users/ConfirmAvatar
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Avatar": 1,
+  "Extension": "jpg"
+}
+
+### 获取用户信息
+POST {{baseUrl}}/Users/GetUser
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ID": "user_123"
+}
+
+### 设置封面
+POST {{baseUrl}}/Users/SetCover
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123",
+  "Category": "Experiment"
+}
+
+### 关注用户
+POST {{baseUrl}}/Users/Follow
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": "target_user_123",
+  "Action": 1
+}
+
+### 屏蔽用户
+POST {{baseUrl}}/Users/Block
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": "target_user_123",
+  "Action": 1
+}
+
+### 获取关系
+POST {{baseUrl}}/Users/GetRelations
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "UserID": "user_123",
+  "DisplayType": 0,
+  "Skip": 0,
+  "Take": 20
+}
+
+### 绑定社交账户
+POST {{baseUrl}}/Users/BindSocial
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Token": "social_token_123",
+  "UserID": "social_user_123",
+  "Platform": "WeChat"
+}
+
+### 提交日志
+POST {{baseUrl}}/Users/SubmitLog
+Content-Type: application/octet-stream
+x-API-Token: {{token}}
+
+<binary log data>
+
+### 取消账户
+POST {{baseUrl}}/Users/CancelAccount
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "PushToken": "push_token_123"
+}
+
+### 切换区域
+POST {{baseUrl}}/Users/SwitchRegion
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Region": "China",
+  "Transfer": true
+}
+
+### 区域迁移
+POST {{baseUrl}}/Users/MigrateTo
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Source": "US",
+  "Statistic": {},
+  "Backpack": {},
+  "Profile": {}
+}
+
+### 封禁用户
+POST {{baseUrl}}/Users/Ban
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": "user_123",
+  "Reason": "违规",
+  "Length": 7
+}
+
+### 解封用户
+POST {{baseUrl}}/Users/Unban
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": "user_123",
+  "Reason": "解封原因"
+}
+
+### 任命用户
+POST {{baseUrl}}/Users/Appoint
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": "user_123",
+  "Type": "Volunteer",
+  "Reason": "任命原因",
+  "Length": 30
+}
+
+### 举报内容
+POST {{baseUrl}}/Users/Report
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Category": "Experiment",
+  "TargetID": "content_123",
+  "Reason": "举报原因",
+  "Flag": "inappropriate"
+}
+
+### 查找同设备用户
+POST {{baseUrl}}/Users/FindUsersWithSameDevices
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "UserIDs": ["user_123", "user_456"]
+}
+
+### 授权论坛登录
+POST {{baseUrl}}/Users/AuthorizeForum
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Redirect": "https://example.com/callback"
+}
+
+### 交换令牌
+POST {{baseUrl}}/Users/ExchangeToken
+Content-Type: application/x-www-form-urlencoded
+
+client_id=community&client_secret=secret&code=auth_code
+
+### 获取升级App链接
+GET {{baseUrl}}/Users/UpgradeApp?Region=CN

@@ -1,0 +1,227 @@
+# 内容 API 测试脚本
+
+@baseUrl = https://physics-api-cn.turtlesim.com
+@token = your_api_token_here
+
+### 获取服务信息
+GET {{baseUrl}}/Contents/
+
+### 提交实验
+POST {{baseUrl}}/Contents/SubmitExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Summary": {
+    "Title": "测试实验",
+    "Description": "这是一个测试实验",
+    "Category": "Experiment",
+    "Tags": ["测试"]
+  },
+  "Experiment": {
+    "Components": 5
+  }
+}
+
+### 确认实验图像
+POST {{baseUrl}}/Contents/ConfirmExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SummaryID": "summary_123",
+  "Category": "Experiment",
+  "Image": 1,
+  "Extension": "jpg"
+}
+
+### 移除实验
+POST {{baseUrl}}/Contents/RemoveExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SummaryID": "summary_123",
+  "Category": "Experiment"
+}
+
+### 恢复实验
+POST {{baseUrl}}/Contents/RestoreExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SummaryID": "summary_123",
+  "Category": "Experiment"
+}
+
+### 精选实验
+POST {{baseUrl}}/Contents/SelectExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SummaryID": "summary_123",
+  "Category": "Experiment"
+}
+
+### 添加标签
+POST {{baseUrl}}/Contents/AcknowledgeExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SummaryID": "summary_123",
+  "Category": "Experiment",
+  "Tag": "精选"
+}
+
+### 移动类别
+POST {{baseUrl}}/Contents/MoveCategory
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SummaryID": "summary_123",
+  "Category": "Experiment",
+  "Target": "Model"
+}
+
+### 获取库
+POST {{baseUrl}}/Contents/GetLibrary
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Identifier": "Homepage",
+  "Language": "Chinese"
+}
+
+### 查询实验
+POST {{baseUrl}}/Contents/QueryExperiments
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Query": {
+    "Category": "Experiment",
+    "Skip": 0,
+    "Take": 20,
+    "Sort": "Popularity"
+  }
+}
+
+### 获取摘要
+POST {{baseUrl}}/Contents/GetSummary
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123",
+  "Category": "Experiment"
+}
+
+### 获取衍生内容
+POST {{baseUrl}}/Contents/GetDerivatives
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123",
+  "Category": "Experiment",
+  "WithSummary": true,
+  "Language": "Chinese"
+}
+
+### 获取支持者
+POST {{baseUrl}}/Contents/GetSupporters
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123",
+  "Category": "Experiment",
+  "Skip": 0,
+  "Take": 10
+}
+
+### 获取用户资料
+POST {{baseUrl}}/Contents/GetProfile
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ID": "user_123"
+}
+
+### 访问实验
+POST {{baseUrl}}/Contents/VisitExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SummaryID": "summary_123",
+  "Category": "Experiment"
+}
+
+### 获取实验数据
+POST {{baseUrl}}/Contents/GetExperiment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123"
+}
+
+### 获取工作区数据
+POST {{baseUrl}}/Contents/GetWorkspace
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123"
+}
+
+### 星标内容
+POST {{baseUrl}}/Contents/StarContent
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123",
+  "Category": "Experiment",
+  "Status": true,
+  "Type": "Star"
+}
+
+### 邀请协作者
+POST {{baseUrl}}/Contents/InviteCoauthor
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Category": "Experiment",
+  "SummaryID": "summary_123",
+  "TargetID": "user_456"
+}
+
+### 移除协作者
+POST {{baseUrl}}/Contents/RemoveCoauthor
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "Category": "Experiment",
+  "SummaryID": "summary_123",
+  "TargetID": "user_456"
+}
+
+### 检查内容是否已星标（已废弃）
+POST {{baseUrl}}/Contents/IsStarred
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "ContentID": "content_123",
+  "Category": "Experiment"
+}

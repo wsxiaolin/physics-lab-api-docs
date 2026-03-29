@@ -1,0 +1,79 @@
+# 消息 API 测试脚本
+
+@baseUrl = https://physics-api-cn.turtlesim.com
+@token = your_api_token_here
+
+### 获取消息
+POST {{baseUrl}}/Messages/GetMessage
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "MessageID": "message_123"
+}
+
+### 处理邀请
+POST {{baseUrl}}/Messages/HandleInvitation
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "MessageID": "message_123"
+}
+
+### 获取消息列表
+POST {{baseUrl}}/Messages/GetMessages
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "CategoryID": 0,
+  "Skip": 0,
+  "Take": 20
+}
+
+### 移除评论
+POST {{baseUrl}}/Messages/RemoveComment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "CommentID": "comment_123",
+  "TargetType": "Experiment"
+}
+
+### 发布评论
+POST {{baseUrl}}/Messages/PostComment
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": "content_123",
+  "TargetType": "Experiment",
+  "Content": "这是一个测试评论",
+  "Language": "Chinese"
+}
+
+### 获取评论列表
+POST {{baseUrl}}/Messages/GetComments
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": "content_123",
+  "TargetType": "Experiment",
+  "Skip": 0,
+  "Take": 20
+}
+
+### 发送批量消息
+POST {{baseUrl}}/Messages/SendMessages
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "TargetID": ["user_123", "user_456"],
+  "Category": "Experiment",
+  "SummaryID": ["summary_123", "summary_456"],
+  "TemplateID": "template_123"
+}

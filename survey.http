@@ -1,0 +1,31 @@
+# 调查 API 测试脚本
+
+@baseUrl = https://physics-api-cn.turtlesim.com
+@token = your_api_token_here
+
+### 获取调查
+POST {{baseUrl}}/Surveys/GetSurvey
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SurveyID": "survey_123"
+}
+
+### 提交调查
+POST {{baseUrl}}/Surveys/SubmitSurvey
+Content-Type: application/json
+x-API-Token: {{token}}
+
+{
+  "SurveyID": "survey_123",
+  "Record": {
+    "UserID": "user_123",
+    "SurveyID": "survey_123",
+    "Trigger": "test_trigger",
+    "Answers": {
+      "question1": "answer1",
+      "question2": "answer2"
+    }
+  }
+}
