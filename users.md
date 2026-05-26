@@ -41,7 +41,7 @@ Content-Type: application/json
   "Login": "user@example.com",
   "Password": "password",
   "Device": {
-    "Identifier": "device123",
+    "Identifier": "ad30dc0e8cb3ac808ec26a9c97100000",
     "Platform": "iOS",
     "System": "iOS 15.0",
     "Language": "Chinese"
